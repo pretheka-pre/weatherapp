@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}SkyCast | Weather Forecast{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="hero-card text-center">
+        <div class="hero-badge">Live weather at a glance</div>
+        <h1 class="display-4 fw-bold mb-3">SkyCast</h1>
+        <p class="lead mb-4">Search any city and get a polished, real-time weather snapshot in seconds.</p>
+
+        <form method="post" class="search-form mx-auto" novalidate>
+          <div class="input-group shadow-sm">
+            <input
+              type="text"
+              name="city"
+              class="form-control"
+              placeholder="Search for a city..."
+              aria-label="City"
+              required
+            >
+            <button class="btn btn-primary px-4" type="submit" id="submitBtn">
+              <span class="me-2"></span>Check Weather
+            </button>
+          </div>
+          <div class="loading-spinner d-none mt-3" id="loadingSpinner">
+            <span class="spinner"></span>
+            <span class="ms-2">Fetching weather data...</span>
+          </div>
+        </form>
+
+        {% if error_message %}
+          <div class="alert alert-danger mt-4" role="alert">{{ error_message }}</div>
+        {% endif %}
+
+        {% if weather_data %}
+          <div class="weather-card mt-4">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
+                  <div class="weather-icon">{{ weather_data.weather_icon }}</div>
+                  <div class="ms-3 text-start">
+                    <h2 class="mb-1">{{ weather_data.city }}</h2>
+                    <p class="mb-0 text-muted">{{ weather_data.country }}</p>
+                  </div>
+                </div>
+                <h3 class="display-3 fw-bold">{{ weather_data.temperature }}°C</h3>
+                <p class="mb-3 fs-5">{{ weather_data.condition }}</p>
+              </div>
+              <div class="col-md-6">
+                <div class="stats-grid">
+                  <div class="stat-item">
+                    <span class="label">Feels Like</span>
+                    <strong>{{ weather_data.feels_like }}°C</strong>
+                  </div>
+                  <div class="stat-item">
+                    <span class="label">Humidity</span>
+                    <strong>{{ weather_data.humidity }}%</strong>
+                  </div>
+                  <div class="stat-item">
+                    <span class="label">Wind Speed</span>
+                    <strong>{{ weather_data.wind_speed }} km/h</strong>
+                  </div>
+                  <div class="stat-item">
+                    <span class="label">Pressure</span>
+                    <strong>{{ weather_data.pressure }} hPa</strong>
+                  </div>
+                </div>
+                <div class="coordinates mt-3">
+                  <span>Lat: {{ weather_data.latitude }}</span>
+                  <span>Lon: {{ weather_data.longitude }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <div class="empty-state mt-4">
+            <div class="empty-icon">🌤️</div>
+            <h3>Start with a city name</h3>
+            <p>Enter any location to reveal the live forecast and details.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
