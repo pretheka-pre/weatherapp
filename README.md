@@ -66,13 +66,13 @@ skycast/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/synent-task6-weatherapp-pretheka.git
+git clone https://github.com/your-username/weatherapp.git
 ```
 
 Navigate to the project folder:
 
 ```bash
-cd synent-task6-weatherapp-pretheka
+cd weatherapp
 ```
 
 Create a virtual environment (optional but recommended):
@@ -147,5 +147,3 @@ Used to retrieve live weather information based on geographic coordinates.
 GitHub: https://github.com/pretheka-pre
 
 ---
-
-This project was developed as part of the **Synent Technologies Python Development Internship**.
